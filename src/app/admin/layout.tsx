@@ -1,8 +1,8 @@
 "use client";
 
-import { Metadata } from 'next';
+// import { Metadata } from 'next';
 
-export const metadata: Metadata = {
+export const metadata = {
   title: 'Admin Dashboard',
   description: 'Quản lý website blog',
 };
