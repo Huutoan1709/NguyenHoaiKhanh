@@ -1,6 +1,3 @@
-"use client";
-
-// import { Metadata } from 'next';
 
 export const metadata = {
   title: 'Admin Dashboard',
