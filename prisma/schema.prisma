@@ -1,32 +1,30 @@
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
   binaryTargets = ["native", "rhel-openssl-1.0.x"]
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
-
 
 model Post {
   id            String    @id @default(cuid())
   title         String
-  content       String    @db.Text
-  excerpt       String?   @db.Text
+  content       String
+  excerpt       String?
   slug          String?   @unique
   featuredImage String?
   status        String    @default("draft")
   tags          String[]  @default([])
   viewCount     Int       @default(0)
   authorId      String
-  author        User      @relation(fields: [authorId], references: [id])
   categoryId    String?
-  category      Category? @relation(fields: [categoryId], references: [id])
-  comments      Comment[]
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
+  comments      Comment[]
+  author        User      @relation(fields: [authorId], references: [id])
+  category      Category? @relation(fields: [categoryId], references: [id])
 
   @@index([authorId])
   @@index([categoryId])
@@ -36,10 +34,10 @@ model Category {
   id          String   @id @default(cuid())
   name        String
   slug        String   @unique
-  description String?  @db.Text
-  posts       Post[]
+  description String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  posts       Post[]
 }
 
 model User {
@@ -47,32 +45,32 @@ model User {
   name        String?
   email       String    @unique
   avatar      String?
-  bio         String?   @db.Text
+  bio         String?
   socialLinks Json?
   role        String    @default("user")
   password    String?
-  posts       Post[]
-  comments    Comment[]
-  accounts    Account[]
-  sessions    Session[]
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
+  accounts    Account[]
+  comments    Comment[]
+  posts       Post[]
+  sessions    Session[]
 }
 
 model Account {
-  id                String   @id @default(cuid())
+  id                String  @id @default(cuid())
   userId            String
   type              String
   provider          String
   providerAccountId String
-  refresh_token     String?  @db.Text
-  access_token      String?  @db.Text
+  refresh_token     String?
+  access_token      String?
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String?  @db.Text
+  id_token          String?
   session_state     String?
-  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
   @@index([userId])
@@ -90,13 +88,13 @@ model Session {
 
 model Comment {
   id        String   @id @default(cuid())
-  content   String   @db.Text
-  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  content   String
   postId    String
-  author    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  author    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([postId])
   @@index([userId])
