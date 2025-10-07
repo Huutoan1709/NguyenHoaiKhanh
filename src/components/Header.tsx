@@ -218,8 +218,6 @@ export default function Header() {
                 <AdminNavLink href="/admin">Dashboard</AdminNavLink>
                 <AdminNavLink href="/admin/posts">Bài viết</AdminNavLink>
                 <AdminNavLink href="/admin/categories">Danh mục</AdminNavLink>
-                <AdminNavLink href="/admin/media">Media</AdminNavLink>
-                <AdminNavLink href="/admin/users">Người dùng</AdminNavLink>
               </div>
             ) : (
               <div className={`mr-4 flex items-center gap-1 rounded-2xl p-1.5 border shadow-lg transition-all duration-300 ${
@@ -230,7 +228,6 @@ export default function Header() {
                 {[
                   ["#overview", "Giới thiệu"],
                   ["#founder", "Sáng lập"],
-                  // ["#brands", "Thương hiệu"],
                   ["/blog", "Bài viết"],
                   ["#values", "Giá trị"],
                 ].map(([href, label]) => (
@@ -393,12 +390,6 @@ export default function Header() {
                 <MobileAdminLink href="/admin/categories" onClick={() => setIsMenuOpen(false)}>
                   Danh mục
                 </MobileAdminLink>
-                <MobileAdminLink href="/admin/media" onClick={() => setIsMenuOpen(false)}>
-                  Media
-                </MobileAdminLink>
-                <MobileAdminLink href="/admin/users" onClick={() => setIsMenuOpen(false)}>
-                  Người dùng
-                </MobileAdminLink>
                 
                 {adminUser && (
                   <div className="pt-4 mt-4 border-t border-gray-200">
@@ -454,7 +445,6 @@ export default function Header() {
                 {[
                   ["#overview", "Giới thiệu"],
                   ["#founder", "Sáng lập"],
-                  ["#brands", "Thương hiệu"],
                   ["/blog", "Bài viết"],
                   ["#values", "Giá trị"],
                 ].map(([href, label]) => (

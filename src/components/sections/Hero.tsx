@@ -63,7 +63,7 @@ export default function Hero() {
             { number: "10+", label: "Tác phẩm & Tham luận" },
             { number: "20+", label: "Dự án cộng đồng & quốc tế" },
             { number: "5+", label: "Thương hiệu thức tỉnh" },
-            { number: "1+", label: "hệ sinh thái tuần hoàn – metta" }
+            { number: "1+", label: "Hệ sinh thái tuần hoàn Metta" }
           ].map((stat) => (
             <div key={stat.label} className="bg-white/10 backdrop-blur-sm p-4 rounded-lg text-center">
               <div className="text-2xl md:text-3xl font-bold text-white">{stat.number}</div>

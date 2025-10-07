@@ -152,7 +152,7 @@ export default function Contact() {
         <div className="absolute inset-0">
           <Image
             src="/images/i6.jpg"
-            alt="Contact Background"
+            alt=""
             fill
             className="object-cover object-top-right"
             priority
